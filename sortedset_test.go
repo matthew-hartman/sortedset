@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func checkOrder(t *testing.T, nodes []*SortedSetNode, expectedOrder []string) {
+func checkOrder[T any](t *testing.T, nodes []*SortedSetNode[T], expectedOrder []string) {
 	if len(expectedOrder) != len(nodes) {
 		t.Errorf("nodes does not contain %d elements", len(expectedOrder))
 	}
@@ -16,7 +16,7 @@ func checkOrder(t *testing.T, nodes []*SortedSetNode, expectedOrder []string) {
 	}
 }
 
-func checkIterByRankRange(t *testing.T, sortedset *SortedSet, start int, end int, expectedOrder []string) {
+func checkIterByRankRange[T any](t *testing.T, sortedset *SortedSet[T], start int, end int, expectedOrder []string) {
 	var keys []string
 
 	// check nil callback should do nothing
@@ -59,14 +59,14 @@ func checkIterByRankRange(t *testing.T, sortedset *SortedSet, start int, end int
 
 }
 
-func checkRankRangeIterAndOrder(t *testing.T, sortedset *SortedSet, start int, end int, remove bool, expectedOrder []string) {
+func checkRankRangeIterAndOrder[T any](t *testing.T, sortedset *SortedSet[T], start int, end int, remove bool, expectedOrder []string) {
 	checkIterByRankRange(t, sortedset, start, end, expectedOrder)
 	nodes := sortedset.GetByRankRange(start, end, remove)
 	checkOrder(t, nodes, expectedOrder)
 }
 
 func TestCase1(t *testing.T) {
-	sortedset := New()
+	sortedset := New[string]()
 
 	sortedset.AddOrUpdate("a", 89, "Kelly")
 	sortedset.AddOrUpdate("b", 100, "Staley")
@@ -105,7 +105,7 @@ func TestCase1(t *testing.T) {
 func TestCase2(t *testing.T) {
 
 	// create a new set
-	sortedset := New()
+	sortedset := New[string]()
 
 	// fill in new node
 	sortedset.AddOrUpdate("a", 89, "Kelly")
