@@ -5,7 +5,7 @@ Sorted Set is a data-struct inspired by the one from Redis. It allows fast acces
 | Property | Type | Description |
 |---|---|---|
 | `key` | `string` | The identifier of the node. It must be unique within the set. |
-| `value` | `interface {}` | value associated with this node |
+| `value` | `any` | value associated with this node |
 | `score` | `int64` | score is in order to take the sorted set ordered. It may be repeated. |
 
 Each node in the set is associated with a `key`. While `key`s are unique, `score`s may be repeated. 
@@ -17,4 +17,4 @@ A typical use case of sorted set is a leader board in a massive online game, whe
 
 ## Documentation
 
-[https://godoc.org/github.com/wangjia184/sortedset](https://godoc.org/github.com/wangjia184/sortedset)
+[https://godoc.org/github.com/matthew-hartman/sortedset](https://godoc.org/github.com/matthew-hartman/sortedset)
